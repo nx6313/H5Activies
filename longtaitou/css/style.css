@@ -1,0 +1,942 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: #BF1515;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.kefu {
+    position: fixed;
+    bottom: 10vw;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+    z-index: 99999;
+}
+
+.kefu img {
+    position: relative;
+    width: 20vw;
+    height: 20vw;
+}
+
+img.loading {
+    position: fixed;
+    top: 26vh;
+    left: 13vw;
+    z-index: 99999999;
+    width: 74vw;
+    display: none;
+}
+
+#pageContainer {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+#pageRailWrap {
+    position: relative;
+    transition: 0.4s ease;
+    transform: translateX(0vw);
+}
+
+#carIndex,
+#carDetail,
+#carOrder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    background: -webkit-linear-gradient(#B01316, #B01316, #AD1216, #BF1515, #BF1515);
+    background: -o-linear-gradient(#B01316, #B01316, #AD1216, #BF1515, #BF1515);
+    background: -moz-linear-gradient(#B01316, #B01316, #AD1216, #BF1515, #BF1515);
+    background: linear-gradient(#B01316, #B01316, #AD1216, #BF1515, #BF1515);
+    background-image: url(../imgs/dian.png);
+    background-size: 100% auto;
+    background-repeat: repeat-y;
+    font-size: 0px;
+    overflow: hidden;
+}
+
+#carIndex div.header,
+#carDetail div.header,
+#carOrder div.header {
+    position: relative;
+    width: 100vw;
+    z-index: 2;
+}
+
+#carIndex div.header img.header-bg,
+#carDetail div.header img.header-bg,
+#carOrder div.header img.header-bg {
+    position: relative;
+    width: 100vw;
+    z-index: 2;
+}
+
+#carIndex div.header img.header-person,
+#carDetail div.header img.header-person,
+#carOrder div.header img.header-person {
+    position: absolute;
+    bottom: -28vw;
+    left: 0;
+    width: 100vw;
+    z-index: 9999;
+}
+
+#carIndex img.footer,
+#carDetail img.footer,
+#carOrder img.footer {
+    position: relative;
+    width: 100vw;
+    z-index: 2;
+    bottom: -4px;
+}
+
+#carIndex div.main-content,
+#carDetail div.main-content,
+#carOrder div.main-content {
+    position: relative;
+    top: 10px;
+    font-size: 16px;
+    z-index: 1;
+    padding-top: 80px;
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+
+#carIndex div.main-content img.fu,
+#carDetail div.main-content img.fu,
+#carOrder div.main-content img.fu {
+    position: absolute;
+    top: 0;
+    left: -60px;
+    right: 0;
+    width: calc(100vw + 200px);
+}
+
+#carIndex div.main-content div.content-wrap,
+#carDetail div.main-content div.content-wrap,
+#carOrder div.main-content div.content-wrap {
+    position: relative;
+}
+
+#carIndex div.main-content div.content-wrap img.title,
+#carDetail div.main-content div.content-wrap img.title,
+#carOrder div.main-content div.content-wrap img.title {
+    position: relative;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    width: calc(100vw - 40px);
+}
+
+#carIndex div.main-content div.content-wrap img.title_min,
+#carDetail div.main-content div.content-wrap img.title_min,
+#carOrder div.main-content div.content-wrap img.title_min {
+    position: relative;
+    top: 10px;
+    left: 30px;
+    right: 30px;
+    width: calc(100vw - 60px);
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap,
+#carDetail div.main-content div.content-wrap div.car-item-wrap,
+#carOrder div.main-content div.content-wrap div.car-item-wrap {
+    position: relative;
+    top: 20px;
+    padding-bottom: 20px;
+}
+
+#carIndex div.main-content div.content-wrap div.page-title,
+#carDetail div.main-content div.content-wrap div.page-title,
+#carOrder div.main-content div.content-wrap div.page-title {
+    position: relative;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    height: 10vw;
+    width: calc(100vw - 40px);
+}
+
+#carIndex div.main-content div.content-wrap div.page-title img.title-left,
+#carDetail div.main-content div.content-wrap div.page-title img.title-left,
+#carOrder div.main-content div.content-wrap div.page-title img.title-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4vw;
+}
+
+#carIndex div.main-content div.content-wrap div.page-title img.title-right,
+#carDetail div.main-content div.content-wrap div.page-title img.title-right,
+#carOrder div.main-content div.content-wrap div.page-title img.title-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 4vw;
+}
+
+#carIndex div.main-content div.content-wrap div.page-title div.title-content-wrap,
+#carDetail div.main-content div.content-wrap div.page-title div.title-content-wrap,
+#carOrder div.main-content div.content-wrap div.page-title div.title-content-wrap {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    right: 10px;
+    height: 10vw;
+    text-align: center;
+}
+
+/**** 车辆数据区域样式 ****/
+
+/** 圆形右侧样式 **/
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-right {
+    position: relative;
+    left: 5vw;
+    width: 90vw;
+    height: 50vw;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-right img.word {
+    position: absolute;
+    top: calc((50vw - 34vw) / 2);
+    left: -3px;
+    height: 34vw;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-right img.niao {
+    position: absolute;
+    top: 6vw;
+    right: -8vw;
+    width: 26vw;
+    z-index: 40;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-right img.yun {
+    position: absolute;
+    bottom: 2vw;
+    right: -14vw;
+    width: 30vw;
+    z-index: 40;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-right div.cicle {
+    position: absolute;
+    top: calc((50vw - 42vw) / 2);
+    right: 18px;
+    width: 64vw;
+    height: 42vw;
+    border-radius: 28%;
+    overflow: hidden;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-right div.cicle div.back {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url(../imgs/circle.png) no-repeat;
+    background-size: 100% auto;
+    z-index: 20;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-right div.cicle img.car {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: #BF1515;
+    width: 100%;
+}
+
+/** 圆形左侧样式 **/
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-left {
+    position: relative;
+    left: 5vw;
+    width: 90vw;
+    height: 50vw;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-left img.word {
+    position: absolute;
+    top: calc((50vw - 34vw) / 2);
+    right: -3px;
+    height: 34vw;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-left img.tian {
+    position: absolute;
+    top: 10vw;
+    left: -4vw;
+    width: 30vw;
+    z-index: 40;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-left img.yun {
+    position: absolute;
+    bottom: 2vw;
+    left: -16vw;
+    width: 30vw;
+    z-index: 40;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-left div.cicle {
+    position: absolute;
+    top: calc((50vw - 42vw) / 2);
+    left: 22px;
+    width: 64vw;
+    height: 42vw;
+    border-radius: 30%;
+    overflow: hidden;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-left div.cicle div.back {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url(../imgs/circle.png) no-repeat;
+    background-size: 100% auto;
+    z-index: 20;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-circle-left div.cicle img.car {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: #BF1515;
+    width: 100%;
+}
+
+/** 方形右侧样式 **/
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-right {
+    position: relative;
+    left: 5vw;
+    width: 93vw;
+    height: 50vw;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-right div.square {
+    position: absolute;
+    top: calc((50vw - 42vw) / 2);
+    left: 0;
+    width: 100%;
+    height: 42vw;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-right div.square div.back {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url(../imgs/square.png) no-repeat;
+    background-size: 100% auto;
+    z-index: 20;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-right div.square img.more {
+    position: absolute;
+    top: -8vw;
+    left: -6vw;
+    height: 40vw;
+    z-index: 30;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-right div.square img.hotImg {
+    position: absolute;
+    bottom: 1vw;
+    left: 28vw;
+    height: 14vw;
+    z-index: 90;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-right div.square div.carLogo {
+    position: absolute;
+    top: 4vw;
+    left: -2.8vw;
+    width: 20vw;
+    height: 7vw;
+    z-index: 80;
+    text-align: center;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-right div.square div.carLogo img {
+    position: relative;
+    height: 7vw;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-right div.square div.carHandle {
+    position: absolute;
+    top: 14vw;
+    left: 4vw;
+    width: 36vw;
+    height: 22vw;
+    z-index: 100;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-right div.square img.car {
+    position: absolute;
+    top: 10vw;
+    left: 4vw;
+    width: 41vw;
+    z-index: 10;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-right div.square img.txt {
+    position: absolute;
+    top: calc((100% - 22vw) / 2);
+    right: 16vw;
+    height: 21vw;
+    z-index: 30;
+}
+
+/** 方形左侧样式 **/
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-left {
+    position: relative;
+    left: 2vw;
+    width: 93vw;
+    height: 50vw;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-left div.square {
+    position: absolute;
+    top: calc((50vw - 42vw) / 2);
+    left: 0;
+    width: 100%;
+    height: 42vw;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-left div.square div.back {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url(../imgs/square.png) no-repeat;
+    background-size: 100% auto;
+    transform: rotateY(180deg);
+    z-index: 20;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-left div.square img.more {
+    position: absolute;
+    top: -8vw;
+    right: -6vw;
+    height: 40vw;
+    z-index: 30;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-left div.square img.hotImg {
+    position: absolute;
+    bottom: 1vw;
+    right: 28vw;
+    height: 14vw;
+    z-index: 90;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-left div.square div.carLogo {
+    position: absolute;
+    top: 4vw;
+    right: -2.8vw;
+    width: 20vw;
+    height: 7vw;
+    z-index: 80;
+    text-align: center;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-left div.square div.carLogo img {
+    position: relative;
+    height: 7vw;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-left div.square div.carHandle {
+    position: absolute;
+    top: 14vw;
+    right: 4vw;
+    width: 36vw;
+    height: 22vw;
+    z-index: 100;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-left div.square img.car {
+    position: absolute;
+    top: 7vw;
+    right: 0;
+    width: 41vw;
+    z-index: 10;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-square-left div.square img.txt {
+    position: absolute;
+    top: calc((100% - 22vw) / 2);
+    left: 16vw;
+    height: 21vw;
+    z-index: 30;
+}
+
+/** 卷轴样式 **/
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-des,
+#carDetail div.main-content div.content-wrap div.car-item-wrap div.car-des,
+#carOrder div.main-content div.content-wrap div.car-item-wrap div.car-des {
+    position: relative;
+    left: 5vw;
+    width: 90vw;
+    min-height: 16vw;
+    font-size: 0px;
+    margin-top: 2px;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-des img.card-top-left,
+#carDetail div.main-content div.content-wrap div.car-item-wrap div.car-des img.card-top-left,
+#carOrder div.main-content div.content-wrap div.car-item-wrap div.car-des img.card-top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 8vw;
+    z-index: 20;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-des img.card-top-right,
+#carDetail div.main-content div.content-wrap div.car-item-wrap div.car-des img.card-top-right,
+#carOrder div.main-content div.content-wrap div.car-item-wrap div.car-des img.card-top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 8vw;
+    z-index: 20;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-des img.card-bottom-left,
+#carDetail div.main-content div.content-wrap div.car-item-wrap div.car-des img.card-bottom-left,
+#carOrder div.main-content div.content-wrap div.car-item-wrap div.car-des img.card-bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 8vw;
+    z-index: 20;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-des img.card-bottom-right,
+#carDetail div.main-content div.content-wrap div.car-item-wrap div.car-des img.card-bottom-right,
+#carOrder div.main-content div.content-wrap div.car-item-wrap div.car-des img.card-bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 8vw;
+    z-index: 20;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-des div.card-top-middle,
+#carDetail div.main-content div.content-wrap div.car-item-wrap div.car-des div.card-top-middle,
+#carOrder div.main-content div.content-wrap div.car-item-wrap div.car-des div.card-top-middle {
+    position: absolute;
+    top: 0;
+    left: 4vw;
+    right: 4vw;
+    height: 8vw;
+    background: url(../imgs/card_top_middle.png) repeat-x;
+    background-size: 100% 100%;
+    z-index: 10;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-des div.card-bottom-middle,
+#carDetail div.main-content div.content-wrap div.car-item-wrap div.car-des div.card-bottom-middle,
+#carOrder div.main-content div.content-wrap div.car-item-wrap div.car-des div.card-bottom-middle {
+    position: absolute;
+    bottom: 0;
+    left: 4vw;
+    right: 4vw;
+    height: 8vw;
+    background: url(../imgs/card_bottom_middle.png) repeat-x;
+    background-size: 100% 100%;
+    z-index: 10;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-des div.card-left-middle,
+#carDetail div.main-content div.content-wrap div.car-item-wrap div.car-des div.card-left-middle,
+#carOrder div.main-content div.content-wrap div.car-item-wrap div.car-des div.card-left-middle {
+    position: absolute;
+    left: 0;
+    top: 4vw;
+    bottom: 4vw;
+    width: 9.3vw;
+    background: url(../imgs/card_middle_left.png) repeat-x;
+    background-size: 100% 100%;
+    z-index: 10;
+}
+
+#carIndex div.main-content div.content-wrap div.car-item-wrap div.car-des div.card-right-middle,
+#carDetail div.main-content div.content-wrap div.car-item-wrap div.car-des div.card-right-middle,
+#carOrder div.main-content div.content-wrap div.car-item-wrap div.car-des div.card-right-middle {
+    position: absolute;
+    right: 0;
+    top: 4vw;
+    bottom: 4vw;
+    width: 9.4vw;
+    background: url(../imgs/card_middle_right.png) repeat-x;
+    background-size: 100% 100%;
+    z-index: 10;
+}
+
+#carIndex div.main-content div.content-wrap div.content,
+#carDetail div.main-content div.content-wrap div.content,
+#carOrder div.main-content div.content-wrap div.content {
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 6vw 8vw;
+    z-index: 30;
+}
+
+#carIndex div.main-content div.content-wrap div.content div,
+#carDetail div.main-content div.content-wrap div.content div,
+#carOrder div.main-content div.content-wrap div.content div {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #F8C089;
+    word-wrap: break-word;
+    word-break: normal;
+    color: #BF271F;
+    font-size: 16px;
+}
+
+/********** 车辆详情页面 *********/
+
+.carExhibition {
+    position: relative;
+    left: 10vw;
+    width: 80vw;
+    height: 40vw;
+    background: url(../imgs/detail_car_bg.png) no-repeat;
+    background-size: 100% 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.carExhibition::before {
+    content: '';
+    position: absolute;
+    top: -4vw;
+    bottom: -4vw;
+    left: -2vw;
+    width: 20px;
+    height: 48vw;
+    background: url(../imgs/detail_car_border.png) no-repeat;
+    background-size: 100% 100%;
+    transform: rotateY(180deg);
+}
+
+.carExhibition::after {
+    content: '';
+    position: absolute;
+    top: -4vw;
+    bottom: -4vw;
+    right: -2vw;
+    width: 20px;
+    height: 48vw;
+    background: url(../imgs/detail_car_border.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.carExhibition img.carImg {
+    position: absolute;
+    bottom: 0;
+    left: calc((80vw - 70vw) / 2);
+    width: 70vw;
+}
+
+.carExhibition img.price {
+    position: absolute;
+    bottom: -6vw;
+    left: 4vw;
+    height: 10vw;
+    z-index: 99;
+}
+
+.carExhibition img.hotImg {
+    position: absolute;
+    bottom: -6vw;
+    right: -2vw;
+    height: 16vw;
+    z-index: 99;
+    transform: rotate(-6deg);
+}
+
+.detailBtnWrap {
+    position: relative;
+    left: 10vw;
+    width: 80vw;
+    height: 10vw;
+    margin-top: 46px;
+    margin-bottom: 14px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.detailBtnWrap a.btn_1 {
+    display: inline-block;
+    position: relative;
+    width: calc(( 80vw - 20px) / 2);
+    height: 7vw;
+    margin-right: 10px;
+    background: url(../imgs/yuyue.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.detailBtnWrap a.btn_2 {
+    display: inline-block;
+    position: relative;
+    width: calc(( 80vw - 20px) / 2);
+    height: 7vw;
+    margin-left: 10px;
+    background: url(../imgs/order.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.sShopWrap {
+    position: relative;
+    left: 10vw;
+    width: 80vw;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.sShopWrap img {
+    position: relative;
+    width: 100%;
+}
+
+.sShopWrap p {
+    position: relative;
+    color: #ECCC74;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.featuresWrap {
+    position: relative;
+    left: 10vw;
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12vw;
+}
+
+.featuresWrap .featureItem {
+    position: relative;
+    width: calc((100% - 4 * 30px) / 3);
+    height: 26vw;
+    border: 4px solid #921418;
+    padding: 10px;
+    padding-top: 12vw;
+}
+
+.featuresWrap .featureItem span {
+    color: #F5F098;
+}
+
+.featuresWrap .featureItem span.content {
+    font-size: 14px;
+    display: block;
+    height: 20vw;
+    overflow: auto;
+}
+
+.featuresWrap .featureItem span:first-of-type {
+    display: block;
+    width: 20vw;
+    height: 20vw;
+    line-height: 20vw;
+    text-align: center;
+    position: absolute;
+    top: -10.4vw;
+    left: calc((100% - 20vw) / 2);
+    background: url(../imgs/feature_title_bg.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: top center;
+}
+
+.featuresWrap .featureItem span:last-of-type {
+    display: block;
+    width: 126%;
+    height: 10vw;
+    line-height: 11vw;
+    text-align: center;
+    position: absolute;
+    bottom: -4vw;
+    left: -3vw;
+    background: url(../imgs/feature_time_bg.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: top center;
+    font-size: 12px;
+}
+
+.hotCarWrap {
+    position: relative;
+    left: 10vw;
+    width: 80vw;
+    margin-top: 12vw;
+}
+
+.hotCarWrap img.hotTitle {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.hotCarWrap div.hotCarContentWrap {
+    width: 100%;
+    margin-top: 6vw;
+    position: relative;
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hotCarWrap div.hotCarContentWrap div.hotCarItem {
+    position: relative;
+    width: calc((100% - 2 * 2vw) / 2);
+    height: 50vw;
+    background: url(../imgs/hot_car_bg.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: top center;
+    text-align: center;
+}
+
+.hotCarWrap div.hotCarContentWrap div.hotCarItem:first-of-type {
+    margin-bottom: 4vw;
+}
+
+.hotCarWrap div.hotCarContentWrap div.hotCarItem:nth-of-type(2) {
+    margin-bottom: 4vw;
+}
+
+.hotCarWrap div.hotCarContentWrap div.hotCarItem img.carImg {
+    position: relative;
+    top: 5vw;
+    height: 20vw;
+}
+
+.hotCarWrap div.hotCarContentWrap div.hotCarItem span.carName {
+    position: relative;
+    top: 5vw;
+    font-size: 18px;
+    display: block;
+    color: #F5F098;
+    text-align: center;
+}
+
+.hotCarWrap div.hotCarContentWrap div.hotCarItem span.carDes {
+    position: relative;
+    top: 5vw;
+    font-size: 15px;
+    display: block;
+    color: #F5F098;
+    text-align: center;
+}
+
+.hotCarWrap div.hotCarContentWrap div.hotCarItem span.carPrice {
+    width: 100%;
+    position: absolute;
+    bottom: 1.4vw;
+    display: block;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/**************** 立即预约表单 ****************/
+
+.form-wrap {
+    position: relative;
+    left: 10vw;
+    width: 80vw;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.form-wrap input {
+    position: relative;
+    display: block;
+    width: calc(100% - 32px);
+    height: 8vw;
+    background: #E94430;
+    color: rgb(235, 212, 124);
+    font-size: 3.4vw;
+    outline: none;
+    padding: 0 16px;
+    margin-bottom: 2vw;
+    border: 2px solid rgb(119, 5, 5);
+    border-radius: 100px;
+    box-shadow: 0 0 6px rgba(85, 6, 6, 0.8) inset;
+}
+
+.form-wrap textarea {
+    display: block;
+    width: calc(100% - 32px);
+    height: 20vw;
+    background: #E94430;
+    color: rgb(235, 212, 124);
+    font-size: 3.4vw;
+    outline: none;
+    padding: 8px 16px;
+    margin-bottom: 2vw;
+    border: 2px solid rgb(119, 5, 5);
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(85, 6, 6, 0.8) inset;
+    resize: none;
+}
+
+.form-wrap input.submit {
+    background: rgb(243, 217, 134);
+    color: rgb(240, 26, 18);
+    font-weight: bold;
+    width: 100%;
+    height: 10vw;
+    margin-top: 40px;
+    font-size: 4vw;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #F5F098;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #F5F098;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #F5F098;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #F5F098;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- add to homescreen for ios -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>龙抬头折扣节</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/date.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="dataJs/data-index.js"></script>
+    <script src="dataJs/data-detail.js"></script>
+    <script src="dataJs/data-4s.js"></script>
+    <script src="js/page/index.js"></script>
+    <script src="js/page/detail.js"></script>
+    <script src="js/page/order-car.js"></script>
+    <script src="js/yanhua.js"></script>
+    <script src="js/picker.js"></script>
+    <script src="js/date.js"></script>
+    <script src="js/iscroll.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.js"></script>
+</head>
+
+<body>
+    <div id="pageContainer">
+        <div id="pageRailWrap">
+            <div id="carIndex">
+                <div class="header">
+                    <img class="header-bg" src="imgs/header_bg.png">
+                    <img class="header-person" src="imgs/header_person.png">
+                </div>
+                <div class="main-content">
+                    <img class="fu" src="imgs/fu.png">
+                    <div class="content-wrap">
+                        <img class="title" src="imgs/title.png">
+                        <img class="title_min" src="imgs/title_min.png">
+                        <div class="car-item-wrap"></div>
+                    </div>
+                </div>
+                <img class="footer" src="imgs/footer.png">
+            </div>
+        </div>
+    </div>
+    <div class="kefu" onclick="window.location.href='tel:18660050334'">
+        <img src="imgs/kefu.png">
+    </div>
+    <img id="pageLoading" class="loading" src="imgs/loading.gif">
+    <script>
+        /**
+         * 扩展 JQuery 添加动画属性方法
+         */
+        $.fn.extend({
+            animateCss: function (animationName, removeFlag) {
+                let that = this;
+                var animationEnd =
+                    'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+                let animationEndPromise = new Promise(function (resolve) {
+                    that.addClass('animated ' + animationName).one(animationEnd, function () {
+                        resolve('移出属性动画执行完毕');
+                        $(that).removeClass('animated ' + animationName);
+                        if (removeFlag) {
+                            $(that).remove();
+                        }
+                    });
+                });
+                return animationEndPromise;
+            }
+        });
+        initIframePage();
+        Picker.init();
+        var fworks = new Fireworks({
+            targetDom: '#carIndex > div.header',
+            height: 300,
+            partFriction: 10,
+            zIndex: 999,
+            randomShow: true,
+            times: 3,
+            interval: 1000
+        });
+    </script>
+    <div id="datePlugin"></div>
+</body>
+
+</html>
