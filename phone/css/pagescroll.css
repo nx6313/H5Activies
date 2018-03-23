@@ -1,0 +1,17 @@
+body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    word-wrap: break-word;
+    word-break: normal;
+    cursor: url('../imgs/pointer.ico'), -webkit-grabbing;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.optiscroll {
+    position: relative;
+    height: 100vh;
+}

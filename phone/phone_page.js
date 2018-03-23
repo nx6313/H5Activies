@@ -21,6 +21,7 @@
                 _SETTINGS[key] = options[key] || _defaults[key];
             }
         });
+        setPageStyle();
         if (!_SETTINGS.container) {
             var phonePageDom = getPhonePageDom();
             document.body.appendChild(phonePageDom);
@@ -64,9 +65,9 @@
         var phoneBgTopDom = document.createElement('div');
         phoneBgTopDom.style.position = 'absolute';
         phoneBgTopDom.style.top = '3%';
-        phoneBgTopDom.style.left = 'calc((100% - ((' + _SETTINGS.height + ' / 2.005) * 3 / 7)) / 2)';
-        phoneBgTopDom.style.width = 'calc((' + _SETTINGS.height + ' / 2.005) * 3 / 7)';
-        phoneBgTopDom.style.height = 'calc(((' + _SETTINGS.height + ' / 2.005) * 3 / 7) * 0.14)';
+        phoneBgTopDom.style.left = 'calc((100% - ((' + _SETTINGS.height + ' / 2.005) * 0.5)) / 2 + 1px)';
+        phoneBgTopDom.style.width = 'calc((' + _SETTINGS.height + ' / 2.005) * 0.5)';
+        phoneBgTopDom.style.height = 'calc(((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14)';
         phoneBgTopDom.style.backgroundImage = 'url(imgs/phone_bg_top.png)';
         phoneBgTopDom.style.backgroundRepeat = 'no-repeat';
         phoneBgTopDom.style.backgroundSize = '100% 100%';
@@ -75,30 +76,56 @@
         phonePageDom.appendChild(phoneBgTopDom);
 
         var phonePageContentDom = document.createElement('div');
+        phonePageContentDom.classList.add('phonePageIframeWrap');
         phonePageContentDom.style.position = 'absolute';
         phonePageContentDom.style.width = '87%';
         phonePageContentDom.style.height = '94%';
         phonePageContentDom.style.top = '3%';
         phonePageContentDom.style.left = '6.5%';
-        phonePageContentDom.style.background = 'rgba(255, 255, 255, 1)';
+        phonePageContentDom.style.background = 'rgba(255, 255, 255, 0)';
         phonePageContentDom.style.borderRadius = 'calc(' + _SETTINGS.height + ' / 24)';
         phonePageContentDom.style.overflow = 'hidden';
         phonePageContentDom.style.zIndex = 99;
+        phonePageContentDom.style.cursor = "url('imgs/pointer.ico'), -webkit-grabbing";
 
         var phonePageContentIframeDom = document.createElement('iframe');
-        phonePageContentIframeDom.style.position = 'relative';
+        phonePageContentIframeDom.style.position = 'absolute';
+        phonePageContentIframeDom.style.top = 'calc(((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14)';
+        phonePageContentIframeDom.style.left = '0';
         phonePageContentIframeDom.frameBorder = '0px';
         phonePageContentIframeDom.frameSpacing = '0px';
         phonePageContentIframeDom.style.width = '100%';
-        phonePageContentIframeDom.style.height = '100%';
-        phonePageContentIframeDom.src = 'https://www.sogou.com/sie?hdq=AQxRG-0000&query=android%20判断版本&ie=utf8';
+        phonePageContentIframeDom.style.height = 'calc(100% - (((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14))';
+        phonePageContentIframeDom.style.background = 'rgba(255, 255, 255, 1)';
+        phonePageContentIframeDom.src = 'demo.html';
         phonePageContentDom.appendChild(phonePageContentIframeDom);
 
         phonePageDom.appendChild(phonePageContentDom);
         return phonePageDom;
     }
 
+    function setPageStyle() {
+        var pageStyleEl = document.createElement('style');
+        pageStyleEl.textContent = `
+            .phonePageIframeWrap::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: calc(((${_SETTINGS.height} / 2.005) * 0.5) * 0.14);
+                background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+            }
+        `;
+        document.head.appendChild(pageStyleEl);
+    }
+
+    function showPane(type) {
+        console.log(type);
+    }
+
     window.PhonePage = {
-        init: initPhonePage
+        init: initPhonePage,
+        showPane: showPane
     };
 })();
