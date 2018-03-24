@@ -4,7 +4,7 @@ body {
     overflow: hidden;
     word-wrap: break-word;
     word-break: normal;
-    cursor: url('../imgs/pointer.ico'), -webkit-grabbing;
+    cursor: url('../imgs/finger.ico'), -webkit-grabbing;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
