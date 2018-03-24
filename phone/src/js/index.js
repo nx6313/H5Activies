@@ -5,7 +5,8 @@
         container: '',
         height: '80vh',
         left: '20px',
-        right: ''
+        right: '',
+        indexPage: ''
     };
     var _SETTINGS = {};
 
@@ -97,7 +98,9 @@
         phonePageContentIframeDom.style.width = '100%';
         phonePageContentIframeDom.style.height = 'calc(100% - (((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14))';
         phonePageContentIframeDom.style.background = 'rgba(255, 255, 255, 1)';
-        phonePageContentIframeDom.src = 'demo.html';
+        if (_SETTINGS.indexPage) {
+            phonePageContentIframeDom.src = _SETTINGS.indexPage;
+        }
         phonePageContentDom.appendChild(phonePageContentIframeDom);
 
         phonePageDom.appendChild(phonePageContentDom);
@@ -124,8 +127,18 @@
         console.log(type);
     }
 
+    function getPhoneWidth() {
+
+    }
+
+    function getPhoneHeight() {
+
+    }
+
     window.PhonePage = {
         init: initPhonePage,
-        showPane: showPane
+        showPane: showPane,
+        getPhoneWidth: getPhoneWidth,
+        getPhoneHeight: getPhoneHeight
     };
 })();
