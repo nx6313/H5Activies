@@ -25,9 +25,9 @@ gulp.task('convertJS', function () {
 		}))
 		.pipe(sourcemaps.init()) // 执行sourcemaps
 		.pipe(uglify())
-		.pipe(sourcemaps.write('maps')) // 地图输出路径（存放位置）
+		.pipe(sourcemaps.write('../../dist-test/js/maps')) // 地图输出路径（存放位置）
 		.pipe(gulp.dest('dist/js'));
-})
+});
 
 gulp.task('sass', function () {
 	gulp.src('src/scss/*.scss')
