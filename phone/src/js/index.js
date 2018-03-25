@@ -8,7 +8,6 @@
     var that = this;
 
     var _defaults = {
-        container: '',
         height: '80vh',
         left: '20px',
         right: '',
@@ -31,32 +30,13 @@
         });
 
         setPageStyle();
-        if (!_SETTINGS.container) {
-            var phonePageDom = getPhonePageDom();
-            document.body.appendChild(phonePageDom);
-        } else {
-            if (typeof _SETTINGS.container == 'string') {
-                if (_SETTINGS.container.indexOf('#') == 0) {
-                    var containerDomForId = document.getElementById(_SETTINGS.container.substr(1));
-                    var phonePageDom = getPhonePageDom();
-                    containerDomForId.style.position = 'relative';
-                    containerDomForId.appendChild(phonePageDom);
-                } else if (_SETTINGS.container.indexOf('.') == 0) {
-                    var containerDoms = document.getElementsByClassName(_SETTINGS.container.substr(1));
-                    for (var d = 0; d < containerDoms.length; d++) {
-                        var phonePageDom = getPhonePageDom();
-                        phonePageDom.id = 'phone_page_wrap_' + (d + 1);
-                        containerDoms[d].style.position = 'relative';
-                        containerDoms[d].appendChild(phonePageDom);
-                    }
-                }
-            }
-        }
+        var phonePageDom = getPhonePageDom();
+        document.body.appendChild(phonePageDom);
     }
 
     function getPhonePageDom() {
         var phonePageDom = document.createElement('div');
-        phonePageDom.id = 'phone_page_wrap'; // 多手机模板时，该值会被覆盖
+        phonePageDom.id = 'phone_page_wrap';
         phonePageDom.style.position = 'absolute';
         phonePageDom.style.top = 'calc((100vh - ' + _SETTINGS.height + ') / 2)';
         if (_SETTINGS.right) {
@@ -70,6 +50,7 @@
         phonePageDom.style.backgroundRepeat = 'no-repeat';
         phonePageDom.style.backgroundSize = '100% 100%';
         phonePageDom.style.backgroundPosition = 'center';
+        phonePageDom.style.zIndex = 10;
 
         var phoneBgTopTimeBarDom = document.createElement('div');
         phoneBgTopTimeBarDom.style.position = 'absolute';
@@ -81,7 +62,7 @@
         phoneBgTopTimeBarDom.style.textAlign = 'center';
         phoneBgTopTimeBarDom.style.color = '#F9EDED';
         phoneBgTopTimeBarDom.style.backgroundPosition = 'center';
-        phoneBgTopTimeBarDom.style.fontSize = '14px';
+        phoneBgTopTimeBarDom.style.fontSize = '13px';
         phoneBgTopTimeBarDom.style.textShadow = '0 0 1px #F9EDED';
         phoneBgTopTimeBarDom.style.zIndex = 999;
         phonePageDom.appendChild(phoneBgTopTimeBarDom);
@@ -124,7 +105,7 @@
         phonePageContentDom.style.borderRadius = 'calc(' + _SETTINGS.height + ' / 26)';
         phonePageContentDom.style.overflow = 'hidden';
         phonePageContentDom.style.zIndex = 99;
-        phonePageContentDom.style.cursor = 'url(imgs/pointer.ico), -webkit-grabbing';
+        phonePageContentDom.style.cursor = 'url(imgs/finger.ico), -webkit-grabbing';
 
         var phonePageTitleDom = document.createElement('div');
         phonePageTitleDom.style.position = 'absolute';
@@ -169,7 +150,7 @@
 
         var phonePageContentIframeDom = document.createElement('iframe');
         phonePageContentIframeDom.classList.add('phonePageIframe');
-        phonePageContentIframeDom.style.position = 'absolute';
+        phonePageContentIframeDom.style.position = 'relative';
         phonePageContentIframeDom.style.top = 'calc(((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14 + 44px)';
         phonePageContentIframeDom.style.left = '0';
         phonePageContentIframeDom.frameBorder = '0px';
@@ -177,6 +158,7 @@
         phonePageContentIframeDom.style.width = '100%';
         phonePageContentIframeDom.style.height = 'calc(100% - (((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14) - 44px)';
         phonePageContentIframeDom.style.overflow = 'hidden';
+        phonePageContentIframeDom.style.borderRadius = '0 0 calc(' + _SETTINGS.height + ' / 26) calc(' + _SETTINGS.height + ' / 26)';
         phonePageContentIframeDom.style.background = 'rgba(255, 255, 255, 1)';
         if (_SETTINGS.indexPage) {
             phonePageContentIframeDom.src = _SETTINGS.indexPage;
@@ -190,6 +172,16 @@
     function setPageStyle() {
         var pageStyleEl = document.createElement('style');
         pageStyleEl.textContent = `
+            body {
+                width: 100vw;
+                height: 100vh;
+                overflow: hidden;
+                background: #46618D;
+                background-image: url(imgs/bg.png);
+                background-repeat: repeat-x;
+                background-size: 300px auto;
+                background-position: bottom center;
+            }
             .phonePageIframeWrap::before {
                 content: '';
                 position: absolute;
@@ -221,6 +213,126 @@
                 opacity: .3;
                 transition: 0s;
             }
+            
+            @-webkit-keyframes fadeIn {
+                from {
+                  opacity: 0;
+                }
+                to {
+                  opacity: 1;
+                }
+            }
+              
+            @keyframes fadeIn {
+                from {
+                  opacity: 0;
+                }
+                to {
+                  opacity: 1;
+                }
+            }
+              
+            .fadeIn {
+                -webkit-animation-name: fadeIn;
+                animation-name: fadeIn;
+                -webkit-animation-duration: 0.8s;
+                animation-duration: 0.8s;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+            }
+
+            @-webkit-keyframes fadeOut {
+                from {
+                  opacity: 1;
+                }
+                to {
+                  opacity: 0;
+                }
+            }
+              
+            @keyframes fadeOut {
+                from {
+                  opacity: 1;
+                }
+                to {
+                  opacity: 0;
+                }
+            }
+              
+            .fadeOut {
+                -webkit-animation-name: fadeOut;
+                animation-name: fadeOut;
+                -webkit-animation-duration: 0.6s;
+                animation-duration: 0.6s;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+            }
+
+            @-webkit-keyframes slideInDown {
+                from {
+                    -webkit-transform: translate3d(0, -100%, 0);
+                    transform: translate3d(0, -100%, 0);
+                    visibility: visible;
+                }
+                to {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+            
+            @keyframes slideInDown {
+                from {
+                    -webkit-transform: translate3d(0, -100%, 0);
+                    transform: translate3d(0, -100%, 0);
+                    visibility: visible;
+                }
+                to {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+            
+            .slideInDown {
+                -webkit-animation-name: slideInDown;
+                animation-name: slideInDown;
+                -webkit-animation-duration: 0.6s;
+                animation-duration: 0.6s;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+            }
+
+            @-webkit-keyframes slideOutDown {
+                from {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+                to {
+                    visibility: hidden;
+                    -webkit-transform: translate3d(0, 140%, 0);
+                    transform: translate3d(0, 140%, 0);
+                }
+            }
+            
+            @keyframes slideOutDown {
+                from {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+                to {
+                    visibility: hidden;
+                    -webkit-transform: translate3d(0, 140%, 0);
+                    transform: translate3d(0, 140%, 0);
+                }
+            }
+            
+            .slideOutDown {
+                -webkit-animation-name: slideOutDown;
+                animation-name: slideOutDown;
+                -webkit-animation-duration: 0.6s;
+                animation-duration: 0.6s;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+            }
         `;
         document.head.appendChild(pageStyleEl);
     }
@@ -236,8 +348,65 @@
     }
 
     // 弹出对应面板区域
-    function showPane(title, width, height) {
-        console.log(title, width, height);
+    function showPane(title) {
+        if (!document.getElementById('phoneAboutPane')) {
+            var paneShadeDom = document.createElement('div');
+            paneShadeDom.id = 'phoneAboutPaneShade';
+            paneShadeDom.style.width = '100vw';
+            paneShadeDom.style.height = '100vh';
+            paneShadeDom.style.position = 'absolute';
+            paneShadeDom.style.top = '0px';
+            paneShadeDom.style.left = '0px';
+            paneShadeDom.style.background = 'rgba(0, 0, 0, 0)';
+            paneShadeDom.style.zIndex = 99999;
+            paneShadeDom.classList.add('fadeIn');
+            document.body.appendChild(paneShadeDom);
+
+            var paneDom = document.createElement('div');
+            paneDom.id = 'phoneAboutPane';
+            paneDom.style.position = 'absolute';
+            paneDom.style.top = 'calc((100vh - ' + _SETTINGS.height + ') / 2)';
+            paneDom.style.bottom = 'calc((100vh - ' + _SETTINGS.height + ') / 2)';
+            if (_SETTINGS.right) {
+                paneDom.style.width = 'calc(100vw - (' + _SETTINGS.height + ' / 2.005 + ' + _SETTINGS.right + ' + ' + _SETTINGS.right + ' + ' + _SETTINGS.right + '))';
+                paneDom.style.right = 'calc(' + _SETTINGS.height + ' / 2.005 + ' + _SETTINGS.right + ' + ' + _SETTINGS.right + ')';
+            } else if (_SETTINGS.left) {
+                paneDom.style.width = 'calc(100vw - (' + _SETTINGS.height + ' / 2.005 + ' + _SETTINGS.left + ' + ' + _SETTINGS.left + ' + ' + _SETTINGS.left + '))';
+                paneDom.style.left = 'calc(' + _SETTINGS.height + ' / 2.005 + ' + _SETTINGS.left + ' + ' + _SETTINGS.left + ')';
+            }
+            paneDom.style.borderRadius = '0px';
+            paneDom.style.boxShadow = '0 0 8px rgba(44, 44, 44, .6)';
+            paneDom.style.background = 'rgba(255, 255, 255, 1)';
+            paneDom.style.zIndex = 999999;
+            paneDom.classList.add('slideInDown');
+            document.body.appendChild(paneDom);
+
+            var paneTitleDom = document.createElement('div');
+            paneTitleDom.style.position = 'absolute';
+            paneTitleDom.style.top = '-24px';
+            paneTitleDom.style.left = '0px';
+            paneTitleDom.style.padding = '2px 6px';
+            paneTitleDom.style.background = '#ffffff';
+            paneTitleDom.style.boxShadow = '0 0 8px rgba(44, 44, 44, .4) inset';
+            paneTitleDom.style.fontSize = '14px';
+            paneTitleDom.style.color = '#444444';
+            paneTitleDom.innerHTML = title ? title : '未定义操作面板标题';
+            paneDom.appendChild(paneTitleDom);
+
+            paneShadeDom.onclick = function () {
+                paneShadeDom.classList.remove('fadeIn');
+                paneShadeDom.classList.add('fadeOut');
+                setTimeout(function () {
+                    paneShadeDom.remove();
+                }, 800);
+
+                paneDom.classList.remove('slideInDown');
+                paneDom.classList.add('slideOutDown');
+                setTimeout(function () {
+                    paneDom.remove();
+                }, 800);
+            };
+        }
     }
 
     // 获取手机模型有效区域宽度（不包含标题栏）

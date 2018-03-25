@@ -7,13 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>手机模型测试页</title>
     <script src="js/index.js"></script>
+    <script src="js/yanhua.js"></script>
 </head>
 
 <body>
+    <div id="fireWrap"></div>
     <script>
         PhonePage.init({
             indexPage: 'html/demo.html',
             indexPageTitle: '宿达管理端'
+        });
+        var fworks = new Fireworks({
+            targetDom: 'fireWrap',
+            height: 440,
+            partFriction: 10,
+            zIndex: 1,
+            randomShow: true,
+            times: -1,
+            interval: 600
         });
     </script>
 </body>
