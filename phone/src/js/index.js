@@ -11,7 +11,10 @@
         height: '80vh',
         left: '20px',
         right: '',
+        stateBarBg: '#ee3434',
         indexPage: '',
+        hasTitleBar: true,
+        titleBarBg: '#ee3434',
         indexPageTitle: ''
     };
     var _SETTINGS = {};
@@ -107,56 +110,67 @@
         phonePageContentDom.style.zIndex = 99;
         phonePageContentDom.style.cursor = 'url(imgs/finger.ico), -webkit-grabbing';
 
-        var phonePageTitleDom = document.createElement('div');
-        phonePageTitleDom.style.position = 'absolute';
-        phonePageTitleDom.style.top = 'calc(((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14)';
-        phonePageTitleDom.style.left = '0';
-        phonePageTitleDom.style.width = '100%';
-        phonePageTitleDom.style.height = '44px';
-        phonePageTitleDom.style.background = '#ee3434';
+        if (_SETTINGS.hasTitleBar === true) {
+            var phonePageTitleDom = document.createElement('div');
+            phonePageTitleDom.style.position = 'absolute';
+            phonePageTitleDom.style.top = 'calc(((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14)';
+            phonePageTitleDom.style.left = '0';
+            phonePageTitleDom.style.width = '100%';
+            phonePageTitleDom.style.height = '44px';
+            phonePageTitleDom.style.background = _SETTINGS.titleBarBg;
 
-        var titleBarNameDom = document.createElement('span');
-        titleBarNameDom.style.position = 'absolute';
-        titleBarNameDom.style.display = 'inline-block';
-        titleBarNameDom.style.top = '0px';
-        titleBarNameDom.style.left = '0px';
-        titleBarNameDom.style.width = '100%';
-        titleBarNameDom.style.height = '44px';
-        titleBarNameDom.style.lineHeight = '44px';
-        titleBarNameDom.style.fontSize = '18px';
-        titleBarNameDom.style.color = '#ffffff';
-        titleBarNameDom.style.textAlign = 'center';
-        titleBarNameDom.innerHTML = _SETTINGS.indexPageTitle;
-        phonePageTitleDom.appendChild(titleBarNameDom);
+            var titleBarNameDom = document.createElement('span');
+            titleBarNameDom.style.position = 'absolute';
+            titleBarNameDom.style.display = 'inline-block';
+            titleBarNameDom.style.top = '0px';
+            titleBarNameDom.style.left = '0px';
+            titleBarNameDom.style.width = '100%';
+            titleBarNameDom.style.height = '44px';
+            titleBarNameDom.style.lineHeight = '44px';
+            titleBarNameDom.style.fontSize = '18px';
+            titleBarNameDom.style.color = '#ffffff';
+            titleBarNameDom.style.textAlign = 'center';
+            titleBarNameDom.innerHTML = _SETTINGS.indexPageTitle;
+            phonePageTitleDom.appendChild(titleBarNameDom);
 
-        var titleBarBackDom = document.createElement('div');
-        titleBarBackDom.classList.add('titleBarBack');
-        titleBarBackDom.style.position = 'absolute';
-        titleBarBackDom.style.top = '2px';
-        titleBarBackDom.style.left = '0px';
-        titleBarBackDom.style.width = '40px';
-        titleBarBackDom.style.height = '40px';
-        titleBarBackDom.style.overflow = 'hidden';
-        titleBarBackDom.style.backgroundImage = 'url(imgs/back.png)';
-        titleBarBackDom.style.backgroundRepeat = 'no-repeat';
-        titleBarBackDom.style.backgroundSize = '40% 40%';
-        titleBarBackDom.style.backgroundPosition = '40%';
-        titleBarBackDom.onclick = function () {
-            history.back();
-        };
-        phonePageTitleDom.appendChild(titleBarBackDom);
+            var titleBarBackDom = document.createElement('div');
+            titleBarBackDom.classList.add('titleBarBack');
+            titleBarBackDom.style.position = 'absolute';
+            titleBarBackDom.style.top = '2px';
+            titleBarBackDom.style.left = '0px';
+            titleBarBackDom.style.width = '40px';
+            titleBarBackDom.style.height = '40px';
+            titleBarBackDom.style.overflow = 'hidden';
+            titleBarBackDom.style.backgroundImage = 'url(imgs/back.png)';
+            titleBarBackDom.style.backgroundRepeat = 'no-repeat';
+            titleBarBackDom.style.backgroundSize = '40% 40%';
+            titleBarBackDom.style.backgroundPosition = '40%';
+            titleBarBackDom.style.display = 'none';
+            titleBarBackDom.onclick = function () {
+                history.back();
+            };
+            phonePageTitleDom.appendChild(titleBarBackDom);
 
-        phonePageContentDom.appendChild(phonePageTitleDom);
+            phonePageContentDom.appendChild(phonePageTitleDom);
+        }
 
         var phonePageContentIframeDom = document.createElement('iframe');
         phonePageContentIframeDom.classList.add('phonePageIframe');
         phonePageContentIframeDom.style.position = 'relative';
-        phonePageContentIframeDom.style.top = 'calc(((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14 + 44px)';
+        if (_SETTINGS.hasTitleBar === true) {
+            phonePageContentIframeDom.style.top = 'calc(((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14 + 44px)';
+        } else {
+            phonePageContentIframeDom.style.top = 'calc(((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14)';
+        }
         phonePageContentIframeDom.style.left = '0';
         phonePageContentIframeDom.frameBorder = '0px';
         phonePageContentIframeDom.frameSpacing = '0px';
         phonePageContentIframeDom.style.width = '100%';
-        phonePageContentIframeDom.style.height = 'calc(100% - (((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14) - 44px)';
+        if (_SETTINGS.hasTitleBar === true) {
+            phonePageContentIframeDom.style.height = 'calc(100% - (((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14) - 44px)';
+        } else {
+            phonePageContentIframeDom.style.height = 'calc(100% - (((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14))';
+        }
         phonePageContentIframeDom.style.overflow = 'hidden';
         phonePageContentIframeDom.style.borderRadius = '0 0 calc(' + _SETTINGS.height + ' / 26) calc(' + _SETTINGS.height + ' / 26)';
         phonePageContentIframeDom.style.background = 'rgba(255, 255, 255, 1)';
@@ -189,11 +203,11 @@
                 left: 0;
                 right: 0;
                 height: calc(((${_SETTINGS.height} / 2.005) * 0.5) * 0.14);
-                background: #ee3434;
+                background: ${_SETTINGS.stateBarBg};
                 //background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
             }
             div.titleBarBack:after {
-                content: "";
+                content: '';
                 display: block;
                 position: absolute;
                 width: 100%;
@@ -235,8 +249,8 @@
             .fadeIn {
                 -webkit-animation-name: fadeIn;
                 animation-name: fadeIn;
-                -webkit-animation-duration: 0.8s;
-                animation-duration: 0.8s;
+                -webkit-animation-duration: 0.6s;
+                animation-duration: 0.6s;
                 -webkit-animation-fill-mode: both;
                 animation-fill-mode: both;
             }
@@ -262,8 +276,8 @@
             .fadeOut {
                 -webkit-animation-name: fadeOut;
                 animation-name: fadeOut;
-                -webkit-animation-duration: 0.6s;
-                animation-duration: 0.6s;
+                -webkit-animation-duration: 0.5s;
+                animation-duration: 0.5s;
                 -webkit-animation-fill-mode: both;
                 animation-fill-mode: both;
             }
@@ -295,8 +309,8 @@
             .slideInDown {
                 -webkit-animation-name: slideInDown;
                 animation-name: slideInDown;
-                -webkit-animation-duration: 0.6s;
-                animation-duration: 0.6s;
+                -webkit-animation-duration: 0.5s;
+                animation-duration: 0.5s;
                 -webkit-animation-fill-mode: both;
                 animation-fill-mode: both;
             }
@@ -328,8 +342,8 @@
             .slideOutDown {
                 -webkit-animation-name: slideOutDown;
                 animation-name: slideOutDown;
-                -webkit-animation-duration: 0.6s;
-                animation-duration: 0.6s;
+                -webkit-animation-duration: 0.5s;
+                animation-duration: 0.5s;
                 -webkit-animation-fill-mode: both;
                 animation-fill-mode: both;
             }
@@ -383,28 +397,33 @@
 
             var paneTitleDom = document.createElement('div');
             paneTitleDom.style.position = 'absolute';
-            paneTitleDom.style.top = '-24px';
             paneTitleDom.style.left = '0px';
             paneTitleDom.style.padding = '2px 6px';
             paneTitleDom.style.background = '#ffffff';
-            paneTitleDom.style.boxShadow = '0 0 8px rgba(44, 44, 44, .4) inset';
+            paneTitleDom.style.boxShadow = '0 0 8px rgba(70, 90, 141, .4) inset';
             paneTitleDom.style.fontSize = '14px';
             paneTitleDom.style.color = '#444444';
+            if (_SETTINGS.right) {
+                paneTitleDom.style.maxWidth = 'calc(100vw - (' + _SETTINGS.height + ' / 2.005 + ' + _SETTINGS.right + ' + ' + _SETTINGS.right + ' + ' + _SETTINGS.right + '))';
+            } else if (_SETTINGS.left) {
+                paneTitleDom.style.maxWidth = 'calc(100vw - (' + _SETTINGS.height + ' / 2.005 + ' + _SETTINGS.left + ' + ' + _SETTINGS.left + ' + ' + _SETTINGS.left + '))';
+            }
             paneTitleDom.innerHTML = title ? title : '未定义操作面板标题';
             paneDom.appendChild(paneTitleDom);
+            paneTitleDom.style.top = '-' + (paneTitleDom.clientHeight + 1) + 'px';
 
             paneShadeDom.onclick = function () {
                 paneShadeDom.classList.remove('fadeIn');
                 paneShadeDom.classList.add('fadeOut');
                 setTimeout(function () {
                     paneShadeDom.remove();
-                }, 800);
+                }, 500);
 
                 paneDom.classList.remove('slideInDown');
                 paneDom.classList.add('slideOutDown');
                 setTimeout(function () {
                     paneDom.remove();
-                }, 800);
+                }, 500);
             };
         }
     }
