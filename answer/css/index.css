@@ -1,0 +1,189 @@
+.gameTraiWrap {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(48, 156, 228) url(../imgs/bo_b.jpg) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    overflow: hidden;
+    z-index: 888;
+}
+
+.gameStartPage {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(48, 156, 228) url(../imgs/bg_1.jpg) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    overflow: hidden;
+    transition: 'all 0.4s ease';
+    transform: 'translateY(0)';
+    z-index: 999;
+}
+
+.gameStartTitle {
+    position: absolute;
+    width: 60vw;
+    top: 16vh;
+    left: 20vw;
+}
+
+.gameStartTitleImg {
+    position: relative;
+    display: block;
+    width: 60vw;
+    z-index: 10;
+}
+
+.gameStartTitle::before {
+    content: '';
+    position: absolute;
+    width: 96vw;
+    height: 26vh;
+    top: -9vh;
+    left: -18vw;
+    background: url(../imgs/bg_title.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    z-index: 9;
+}
+
+.gameStartMinLuoboImg {
+    position: absolute;
+    height: 6vh;
+    top: 35vh;
+    left: calc((20vw - 20px) / 2 + 30px);
+}
+
+.startInput {
+    position: absolute;
+    top: 36vh;
+    left: calc((20vw - 20px) / 2);
+    width: 80vw;
+    padding: 20px 10px;
+    border: none;
+    background: url(../imgs/bg_text.png) no-repeat;
+    background-size: 100% 80%;
+    background-position: center 11px;
+    outline: none;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: #a3543d 2px 0 0, #a3543d 0 2px 0, #a3543d -1px 0 0, #a3543d 0 -1px 0;
+    -webkit-text-shadow: #a3543d 2px 0 0, #a3543d 0 2px 0, #a3543d -1px 0 0, #a3543d 0 -1px 0;
+    -moz-text-shadow: #a3543d 2px 0 0, #a3543d 0 2px 0, #a3543d -1px 0 0, #a3543d 0 -1px 0;
+    *filter: Glow(color=#a3543d, strength=2);
+}
+
+.startInput::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: rgb(255, 255, 255);
+}
+
+.startInput:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: rgb(255, 255, 255);
+}
+
+.startInput::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: rgb(255, 255, 255);
+}
+
+.startInput:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: rgb(255, 255, 255);
+}
+
+.phoneInput {
+    top: 43.8vh;
+}
+
+.gameStartGuize {
+    position: absolute;
+    bottom: 16vh;
+    left: 10vw;
+}
+
+.gameStartGuize::before {
+    content: '';
+    position: absolute;
+    width: 24vw;
+    height: 16vh;
+    top: -4.7vh;
+    left: -4vw;
+    background: url(../imgs/potato.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    z-index: 9;
+}
+
+.gameStartGuize>img {
+    position: relative;
+    display: block;
+    width: 14vw;
+    z-index: 10;
+}
+
+.gameStart {
+    position: absolute;
+    bottom: 10vh;
+    left: calc((100vw - 11vw) / 2);
+}
+
+.gameStart::before {
+    content: '';
+    position: absolute;
+    width: 34vw;
+    height: 50vh;
+    top: -10.8vh;
+    left: -11.3vw;
+    background: url(../imgs/luobo.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    z-index: 9;
+}
+
+.gameStart>img {
+    position: relative;
+    display: block;
+    width: 11vw;
+    z-index: 10;
+}
+
+.gameStartJiang {
+    position: absolute;
+    bottom: 16vh;
+    right: 10vw;
+}
+
+.gameStartJiang::before {
+    content: '';
+    position: absolute;
+    width: 24vw;
+    height: 16vh;
+    top: -4.7vh;
+    left: -6vw;
+    background: url(../imgs/potato.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    z-index: 9;
+    transform: rotateY(180deg);
+}
+
+.gameStartJiang>img {
+    position: relative;
+    display: block;
+    width: 14vw;
+    z-index: 10;
+}
