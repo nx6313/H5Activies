@@ -72,10 +72,10 @@ function toNextStep() {
 function showTimeSelectPicker(title, thiz) {
 	Picker.instance({
 		title: title,
-		// clos: [{
-		// 	// values: ['我是女士', '我是男士'],
-		// 	// displayValues: ['0', '1']
-		// }],
+		clos: [{
+			values: ['我是女士', '我是男士'],
+			displayValues: ['0', '1']
+		}],
 		confirmFn: (selected) => {
 			$(thiz[0]).val(selected.selectDisplayValue);
 			$(thiz[1]).val(selected.selectValue);

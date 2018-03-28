@@ -1,10 +1,4 @@
 (function () {
-    // 禁用浏览器后退
-    history.pushState(null, null, document.URL);
-    window.addEventListener('popstate', function () {
-        history.pushState(null, null, document.URL);
-    });
-
     var that = this;
 
     var _defaults = {
@@ -32,10 +26,13 @@
             }
         });
 
+        document.body.classList.add('noselect');
         setPageStyle();
         var phonePageDom = getPhonePageDom();
         document.body.appendChild(phonePageDom);
     }
+
+    var canBack = true;
 
     function getPhonePageDom() {
         var phonePageDom = document.createElement('div');
@@ -100,8 +97,8 @@
         var phonePageContentDom = document.createElement('div');
         phonePageContentDom.classList.add('phonePageIframeWrap');
         phonePageContentDom.style.position = 'absolute';
-        phonePageContentDom.style.width = '87%';
-        phonePageContentDom.style.height = '94%';
+        phonePageContentDom.style.width = 'calc(' + _SETTINGS.height + ' / 2.005 * 0.87)';
+        phonePageContentDom.style.height = 'calc(' + _SETTINGS.height + ' * 0.94)';
         phonePageContentDom.style.top = '3%';
         phonePageContentDom.style.left = '6.5%';
         phonePageContentDom.style.background = 'rgba(255, 255, 255, 0)';
@@ -147,39 +144,98 @@
             titleBarBackDom.style.backgroundPosition = '40%';
             titleBarBackDom.style.display = 'none';
             titleBarBackDom.onclick = function () {
-                history.back();
+                if (canBack) {
+                    canBack = false;
+                    var phonePageIframesWrapDom = document.getElementById('phone_page_wrap').getElementsByClassName('phonePageIframesWrap')[0];
+
+                    var childPageCurNum = phonePageIframesWrapDom.getElementsByClassName('phonePageIframeItem').length;
+                    if (childPageCurNum == 2) {
+                        titleBarBackDom.style.display = 'none';
+                    }
+
+                    var transformXVal = (Number(_SETTINGS.height.substring(0, _SETTINGS.height.length - 2)) / 2.005 * 0.87 * (childPageCurNum - 2)) + _SETTINGS.height.substr(_SETTINGS.height.length - 2);
+                    phonePageIframesWrapDom.style.transform = 'translateX(-' + transformXVal + ')';
+
+                    setTimeout(function () {
+                        phonePageIframesWrapDom.style.width = 'calc(' + childPageCurNum + ' * (' + _SETTINGS.height + ' / 2.005 * 0.87))';
+                        var lastIframeItemDom = phonePageIframesWrapDom.getElementsByClassName('phonePageIframeItem')[childPageCurNum - 1];
+                        if (lastIframeItemDom) {
+                            lastIframeItemDom.remove();
+                            canBack = true;
+                        }
+                    }, 600);
+                }
             };
             phonePageTitleDom.appendChild(titleBarBackDom);
 
             phonePageContentDom.appendChild(phonePageTitleDom);
         }
 
+        var phonePageIframesWrapDom = document.createElement('div');
+        phonePageIframesWrapDom.classList.add('phonePageIframesWrap');
+        phonePageIframesWrapDom.style.position = 'absolute';
+        if (_SETTINGS.hasTitleBar === true) {
+            phonePageIframesWrapDom.style.top = 'calc(((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14 + 44px)';
+        } else {
+            phonePageIframesWrapDom.style.top = 'calc(((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14)';
+        }
+        phonePageIframesWrapDom.style.width = 'calc(2 * (' + _SETTINGS.height + ' / 2.005 * 0.87))';
+        if (_SETTINGS.hasTitleBar === true) {
+            phonePageIframesWrapDom.style.height = 'calc((' + _SETTINGS.height + ' * 0.94) - (((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14) - 44px)';
+        } else {
+            phonePageIframesWrapDom.style.height = 'calc((' + _SETTINGS.height + ' * 0.94) - (((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14))';
+        }
+        phonePageIframesWrapDom.style.background = 'rgba(255, 255, 255, 1)';
+        phonePageIframesWrapDom.style.overflow = 'hidden';
+        phonePageIframesWrapDom.style.transition = 'all 0.5s ease';
+        phonePageIframesWrapDom.style.transform = 'translateX(0)';
+        phonePageContentDom.appendChild(phonePageIframesWrapDom);
+
+        var phonePageIframeItemWrapDom = document.createElement('div');
+        phonePageIframeItemWrapDom.classList.add('phonePageIframeItem');
+        phonePageIframeItemWrapDom.style.position = 'absolute';
+        phonePageIframeItemWrapDom.style.top = '0';
+        phonePageIframeItemWrapDom.style.left = '0';
+        phonePageIframeItemWrapDom.style.width = 'calc(' + _SETTINGS.height + ' / 2.005 * 0.87)';
+        phonePageIframeItemWrapDom.style.height = '100%';
+        phonePageIframeItemWrapDom.style.overflow = 'hidden';
+        phonePageIframeItemWrapDom.style.background = 'rgba(255, 255, 255, 1)';
+        phonePageIframesWrapDom.appendChild(phonePageIframeItemWrapDom);
+
         var phonePageContentIframeDom = document.createElement('iframe');
         phonePageContentIframeDom.classList.add('phonePageIframe');
-        phonePageContentIframeDom.style.position = 'relative';
-        if (_SETTINGS.hasTitleBar === true) {
-            phonePageContentIframeDom.style.top = 'calc(((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14 + 44px)';
-        } else {
-            phonePageContentIframeDom.style.top = 'calc(((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14)';
-        }
-        phonePageContentIframeDom.style.left = '0';
         phonePageContentIframeDom.frameBorder = '0px';
         phonePageContentIframeDom.frameSpacing = '0px';
         phonePageContentIframeDom.style.width = '100%';
-        if (_SETTINGS.hasTitleBar === true) {
-            phonePageContentIframeDom.style.height = 'calc(100% - (((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14) - 44px)';
-        } else {
-            phonePageContentIframeDom.style.height = 'calc(100% - (((' + _SETTINGS.height + ' / 2.005) * 0.5) * 0.14))';
-        }
+        phonePageContentIframeDom.style.height = '100%';
         phonePageContentIframeDom.style.overflow = 'hidden';
         phonePageContentIframeDom.style.borderRadius = '0 0 calc(' + _SETTINGS.height + ' / 26) calc(' + _SETTINGS.height + ' / 26)';
         phonePageContentIframeDom.style.background = 'rgba(255, 255, 255, 1)';
         if (_SETTINGS.indexPage) {
             phonePageContentIframeDom.src = _SETTINGS.indexPage;
         }
-        phonePageContentDom.appendChild(phonePageContentIframeDom);
+        phonePageIframeItemWrapDom.appendChild(phonePageContentIframeDom);
 
         phonePageDom.appendChild(phonePageContentDom);
+
+        // 弹出面板区域提示文字
+        var paneAreaTipDom = document.createElement('span');
+        paneAreaTipDom.style.position = 'absolute';
+        paneAreaTipDom.style.display = 'inline-block';
+        paneAreaTipDom.innerHTML = 'n(*≧▽≦*)n<br><br><br>点击手机模型中的按钮<br><br>显示操作面板';
+        paneAreaTipDom.style.fontSize = '13px';
+        paneAreaTipDom.style.color = '#F3F8FD';
+        paneAreaTipDom.style.textShadow = '0 0 1px rgba(243, 248, 253, .6)';
+        paneAreaTipDom.style.textAlign = 'center';
+        paneAreaTipDom.style.zIndex = 10;
+        document.body.appendChild(paneAreaTipDom);
+        paneAreaTipDom.style.top = 'calc((100vh - ' + (paneAreaTipDom.clientHeight) + 'px) / 2)';
+        if (_SETTINGS.right) {
+            paneAreaTipDom.style.right = 'calc((100vw - (' + _SETTINGS.height + ' / 2.005 + ' + _SETTINGS.right + ' + ' + _SETTINGS.right + ') - ' + (paneAreaTipDom.clientWidth) + 'px) / 2 + (' + _SETTINGS.height + ' / 2.005 + ' + _SETTINGS.right + ' + ' + _SETTINGS.right + '))';
+        } else if (_SETTINGS.left) {
+            paneAreaTipDom.style.left = 'calc((100vw - (' + _SETTINGS.height + ' / 2.005 + ' + _SETTINGS.left + ' + ' + _SETTINGS.left + ') - ' + (paneAreaTipDom.clientWidth) + 'px) / 2 + (' + _SETTINGS.height + ' / 2.005 + ' + _SETTINGS.left + ' + ' + _SETTINGS.left + '))';
+        }
+
         return phonePageDom;
     }
 
@@ -226,6 +282,15 @@
                 transform: scale(0, 0);
                 opacity: .3;
                 transition: 0s;
+            }
+
+            .noselect {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
             }
             
             @-webkit-keyframes fadeIn {
@@ -361,8 +426,47 @@
         }, 1000);
     }
 
+    // 跳转到手机模型中另一个页面
+    function toPage(title, src) {
+        var phonePageIframesWrapDom = document.getElementById('phone_page_wrap').getElementsByClassName('phonePageIframesWrap')[0];
+        // 获取当前子页面数量
+        var childPageCurNum = phonePageIframesWrapDom.getElementsByClassName('phonePageIframeItem').length;
+        phonePageIframesWrapDom.style.width = 'calc(' + (childPageCurNum + 2) + ' * (' + _SETTINGS.height + ' / 2.005 * 0.87))';
+
+        var phonePageIframeItemWrapDom = document.createElement('div');
+        phonePageIframeItemWrapDom.classList.add('phonePageIframeItem');
+        phonePageIframeItemWrapDom.style.position = 'absolute';
+        phonePageIframeItemWrapDom.style.top = '0';
+        phonePageIframeItemWrapDom.style.left = 'calc(' + childPageCurNum + ' * (' + _SETTINGS.height + ' / 2.005 * 0.87))';
+        phonePageIframeItemWrapDom.style.width = 'calc(' + _SETTINGS.height + ' / 2.005 * 0.87)';
+        phonePageIframeItemWrapDom.style.height = '100%';
+        phonePageIframeItemWrapDom.style.overflow = 'hidden';
+        phonePageIframeItemWrapDom.style.background = 'rgba(255, 255, 255, 1)';
+        phonePageIframesWrapDom.appendChild(phonePageIframeItemWrapDom);
+
+        var phonePageContentIframeDom = document.createElement('iframe');
+        phonePageContentIframeDom.classList.add('phoneChildPageIframe');
+        phonePageContentIframeDom.frameBorder = '0px';
+        phonePageContentIframeDom.frameSpacing = '0px';
+        phonePageContentIframeDom.style.width = '100%';
+        phonePageContentIframeDom.style.height = '100%';
+        phonePageContentIframeDom.style.overflow = 'hidden';
+        phonePageContentIframeDom.style.borderRadius = '0 0 calc(' + _SETTINGS.height + ' / 26) calc(' + _SETTINGS.height + ' / 26)';
+        phonePageContentIframeDom.style.background = 'rgba(255, 255, 255, 1)';
+        if (_SETTINGS.indexPage) {
+            phonePageContentIframeDom.src = src;
+        }
+        phonePageIframeItemWrapDom.appendChild(phonePageContentIframeDom);
+
+        var transformXVal = (Number(_SETTINGS.height.substring(0, _SETTINGS.height.length - 2)) / 2.005 * 0.87 * childPageCurNum) + _SETTINGS.height.substr(_SETTINGS.height.length - 2);
+        phonePageIframesWrapDom.style.transform = 'translateX(-' + transformXVal + ')';
+
+        var titleBarBack = document.getElementById('phone_page_wrap').getElementsByClassName('titleBarBack')[0];
+        titleBarBack.style.display = 'block';
+    }
+
     // 弹出对应面板区域
-    function showPane(title) {
+    function showPane(title, src, parameters) {
         if (!document.getElementById('phoneAboutPane')) {
             var paneShadeDom = document.createElement('div');
             paneShadeDom.id = 'phoneAboutPaneShade';
@@ -394,6 +498,22 @@
             paneDom.style.zIndex = 999999;
             paneDom.classList.add('slideInDown');
             document.body.appendChild(paneDom);
+
+            var paneIframeDom = document.createElement('iframe');
+            paneIframeDom.classList.add('paneIframe');
+            paneIframeDom.style.position = 'relative';
+            paneIframeDom.frameBorder = '0px';
+            paneIframeDom.frameSpacing = '0px';
+            paneIframeDom.style.width = '100%';
+            paneIframeDom.style.height = '100%';
+            if (src) {
+                if (parameters) {
+                    paneIframeDom.src = src + '?params=' + parameters;
+                } else {
+                    paneIframeDom.src = src;
+                }
+            }
+            paneDom.appendChild(paneIframeDom);
 
             var paneTitleDom = document.createElement('div');
             paneTitleDom.style.position = 'absolute';
@@ -450,6 +570,7 @@
 
     window.PhonePage = {
         init: initPhonePage, // 初始化手机模型
+        toPage: toPage, // 跳转到手机模型中另一个页面
         showPane: showPane, // 弹出对应面板区域
         getPhoneWidth: getPhoneWidth, // 获取手机模型有效区域宽度（不包含标题栏）
         getPhoneHeight: getPhoneHeight // 获取手机模型有效区域高度（不包含标题栏）

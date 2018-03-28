@@ -7,6 +7,8 @@ var Picker = (function () {
     normalColor: '#FFFFFF',
     headLeftBtnColor: '#D0E2F4',
     headRightBtnColor: '#FFFFFF',
+    itemColor: '',
+    itemSelectedColor: '',
     shadeClose: true,
     cancelFn: function () {},
     confirmFn: function () {},
@@ -579,7 +581,7 @@ var Picker = (function () {
       position: relative;
       overflow: hidden;
       text-overflow: ellipsis;
-      color: #F3A52F;
+      color: ${_defaults.itemColor};
       left: 0;
       top: 0;
       width: 100%;
@@ -589,7 +591,7 @@ var Picker = (function () {
       font-size: 18px;
     }
     div#pickerSelectWrap div.pickerBodyWrap div.pickerItemsWrap div.pickerItemsCol div.pickerItemSelected {
-      color: #F3D22F;
+      color: ${_defaults.itemSelectedColor};
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
       -webkit-transform: rotateX(0deg);

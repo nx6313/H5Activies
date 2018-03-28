@@ -12,14 +12,16 @@
 
 <body>
     <div id="os1" class="optiscroll">
-        <a href="javascript: parent.PhonePage.toPage('测试显示面板，我是标题', 'http://www.yanwenzi.com/maimeng/');">第一个页面</a><br><br>
+        第二个页面<br><br>
         <a href="javascript: parent.PhonePage.toPage('测试显示面板，我是标题', '../html/demo_2.html');">第一个页面</a><br><br>
         <button onclick="javascript: parent.PhonePage.showPane('测试显示面板，我是标题', 'http://www.baidu.com');">显示面板</button><br><br>
-        <button onclick="javascript: parent.PhonePage.showPane('测试显示面板，我是标题', '../html/demo_2.html', '{ss:123}');">显示面板 demo_2</button><br><br>
         <button onclick="javascript: parent.PhonePage.getPhoneWidth();">获取手机模型有效区域宽度</button><br><br>
         <button onclick="javascript: parent.PhonePage.getPhoneHeight();">获取手机模型有效区域高度</button><br><br>
     </div>
     <script src="../js/pagescroll.js?bindId=os1"></script>
+    <script>
+        alert('${ss}');
+    </script>
 </body>
 
 </html>

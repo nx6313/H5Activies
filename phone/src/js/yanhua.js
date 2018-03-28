@@ -46,7 +46,7 @@ var Fireworks = function (params) {
         self.showFireworkLine = false;
         self.showShockwave = false;
         self.showTarget = false;
-        self.clearAlpha = 25;
+        self.clearAlpha = 15;
 
         if (params.targetDom) {
             document.getElementById(params.targetDom).appendChild(self.canvas);
