@@ -14,25 +14,29 @@
 </head>
 
 <body>
-    <div class="gameStartPage">
+    <div id="musicPlayWrap" class="musicPlayWrap rotate" onclick="playMusicToggle()">
+        <audio loop="" src="music/bg.mp3" autoplay="" preload=""></audio>
+    </div>
+    <div id="gameStartPage" class="gameStartPage">
         <div class="gameStartTitle">
             <img class="gameStartTitleImg" src="imgs/title.png">
         </div>
         <img class="gameStartMinLuoboImg" src="imgs/xiaoluobo.png">
         <input class="startInput nameInput" type="text" placeholder="请输入您的姓名">
         <input class="startInput phoneInput" type="text" placeholder="请输入您的手机号">
-        <div class="gameStartGuize">
+        <div class="gameStartGuize" onclick="showRoute()">
             <img class="gameStartGuizeImg" src="imgs/guize.png">
         </div>
         <div class="gameStart" onclick="startGame()">
             <img class="gameStartImg" src="imgs/start.png">
         </div>
-        <div class="gameStartJiang">
+        <div class="gameStartJiang" onclick="showJiang()">
             <img class="gameStartJiangImg" src="imgs/jiang.png">
         </div>
     </div>
-    <div class="gameTraiWrap">
+    <div id="gameTraiWrap" class="gameTraiWrap">
     </div>
+    <script src="js/data.js"></script>
     <script src="js/index.js"></script>
 </body>
 
