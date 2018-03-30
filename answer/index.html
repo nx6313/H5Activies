@@ -22,8 +22,8 @@
             <img class="gameStartTitleImg" src="imgs/title.png">
         </div>
         <img class="gameStartMinLuoboImg" src="imgs/xiaoluobo.png">
-        <input class="startInput nameInput" type="text" placeholder="请输入您的姓名">
-        <input class="startInput phoneInput" type="text" placeholder="请输入您的手机号">
+        <input id="nameInput" class="startInput nameInput" type="text" placeholder="请输入您的姓名">
+        <input id="phoneInput" class="startInput phoneInput" type="text" placeholder="请输入您的手机号">
         <div class="gameStartGuize" onclick="showRoute()">
             <img class="gameStartGuizeImg" src="imgs/guize.png">
         </div>
@@ -34,8 +34,14 @@
             <img class="gameStartJiangImg" src="imgs/jiang.png">
         </div>
     </div>
+    <div id="gameEndPage" class="gameEndPage">
+        <div class="gameStartTitle">
+            <img class="gameStartTitleImg" src="imgs/title.png">
+        </div>
+    </div>
     <div id="gameTraiWrap" class="gameTraiWrap">
     </div>
+    <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/data.js"></script>
     <script src="js/index.js"></script>
 </body>

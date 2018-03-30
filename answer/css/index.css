@@ -75,6 +75,23 @@ body {
     z-index: 999;
 }
 
+.gameEndPage {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(48, 156, 228) url(../imgs/bg_1.jpg) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    overflow: hidden;
+    transition: all 0.6s ease;
+    transform: translateY(-100vh);
+    z-index: 999;
+}
+
 .gameStartTitle {
     position: absolute;
     width: 60vw;
@@ -166,7 +183,7 @@ body {
     width: 24vw;
     height: 16vh;
     top: -4.7vh;
-    left: -4vw;
+    left: -5vw;
     background: url(../imgs/potato.png) no-repeat;
     background-size: 100% 100%;
     background-position: center;
@@ -218,7 +235,7 @@ body {
     width: 24vw;
     height: 16vh;
     top: -4.7vh;
-    left: -6vw;
+    left: -5vw;
     background: url(../imgs/potato.png) no-repeat;
     background-size: 100% 100%;
     background-position: center;
@@ -231,4 +248,177 @@ body {
     display: block;
     width: 14vw;
     z-index: 10;
+}
+
+/* 游戏中的页面 */
+
+.questionPageWrap div.questionTitleWrap {
+    position: absolute;
+    top: 8vh;
+    width: calc(96vw - 32vw);
+    height: calc(30vh - 24vh);
+    left: calc((100vw - 96vw) / 2);
+    text-align: center;
+    background: url(../imgs/bg_title.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    padding: 12vh 16vw;
+}
+
+.questionPageWrap div.questionTitleWrap span {
+    position: relative;
+    display: block;
+    text-align: left;
+}
+
+.questionPageWrap div.questionTitleWrap span:first-of-type {
+    color: #090404;
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 5.4vw;
+}
+
+.questionPageWrap div.questionTitleWrap span:first-of-type::after {
+    content: '';
+    position: absolute;
+    width: 3.8vw;
+    height: 2.6vh;
+    top: 0;
+    left: 0.5vw;
+    background: url(../imgs/tree.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.questionPageWrap div.questionTitleWrap span:last-of-type {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 6px;
+    text-shadow: #090404 1px 0 0, #090404 0 1px 0, #090404 -1px 0 0, #090404 0 -1px 0;
+    -webkit-text-shadow: #090404 1px 0 0, #090404 0 1px 0, #090404 -1px 0 0, #090404 0 -1px 0;
+    -moz-text-shadow: #090404 1px 0 0, #090404 0 1px 0, #090404 -1px 0 0, #090404 0 -1px 0;
+    *filter: Glow(color=#090404, strength=1);
+}
+
+.answerItem {
+    position: absolute;
+    width: 90vw;
+    height: 6.4vh;
+    line-height: 5.4vh;
+    left: 5vw;
+    display: block;
+    text-align: center;
+    background: url(../imgs/bg_text.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: #090404 1px 0 0, #090404 0 1px 0, #090404 -1px 0 0, #090404 0 -1px 0;
+    -webkit-text-shadow: #090404 1px 0 0, #090404 0 1px 0, #090404 -1px 0 0, #090404 0 -1px 0;
+    -moz-text-shadow: #090404 1px 0 0, #090404 0 1px 0, #090404 -1px 0 0, #090404 0 -1px 0;
+    *filter: Glow(color=#090404, strength=1);
+}
+
+.answerItem:nth-of-type(1) {
+    top: 46vh;
+}
+
+.answerItem:nth-of-type(2) {
+    top: 53vh;
+}
+
+.answerItem:nth-of-type(3) {
+    top: 60vh;
+}
+
+.answerItemSelected {
+    background: url(../imgs/bg_text_selected.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    color: #623123;
+}
+
+.answerInput {
+    position: absolute;
+    width: calc(90vw - 40px);
+    height: calc(24vh - 20px);
+    top: 46vh;
+    left: 5vw;
+    display: block;
+    text-align: left;
+    padding: 10px 20px;
+    background: url(../imgs/bg_t2.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    outline: none;
+    border: none;
+    text-shadow: #090404 1px 0 0, #090404 0 1px 0, #090404 -1px 0 0, #090404 0 -1px 0;
+    -webkit-text-shadow: #090404 1px 0 0, #090404 0 1px 0, #090404 -1px 0 0, #090404 0 -1px 0;
+    -moz-text-shadow: #090404 1px 0 0, #090404 0 1px 0, #090404 -1px 0 0, #090404 0 -1px 0;
+    *filter: Glow(color=#090404, strength=1);
+}
+
+.answerInput::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: rgb(255, 255, 255);
+}
+
+.answerInput:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: rgb(255, 255, 255);
+}
+
+.answerInput::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: rgb(255, 255, 255);
+}
+
+.answerInput:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: rgb(255, 255, 255);
+}
+
+.preQuestion {
+    position: absolute;
+    width: 20vw;
+    height: 16vh;
+    line-height: 14vh;
+    left: 14vw;
+    bottom: 6vh;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+    display: block;
+    text-align: center;
+    background: url(../imgs/potato.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.nextQuestion {
+    position: absolute;
+    width: 20vw;
+    height: 16vh;
+    line-height: 14vh;
+    right: 14vw;
+    bottom: 6vh;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+    display: block;
+    text-align: center;
+    background: url(../imgs/potato.png) no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.onlyOne {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 }
