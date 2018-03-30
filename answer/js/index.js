@@ -4,6 +4,16 @@ var gameAudioVolume = 0.6;
 var hasRotateClass = false;
 var xmlhttp = false;
 var gameUserData = {};
+
+initPage();
+
+function initPage() {
+    var screenHeight = document.body.clientHeight;
+
+    var startGamePage = document.getElementById('gameStartPage');
+    startGamePage.style.height = screenHeight + 'px';
+}
+
 // 开启或关闭游戏背景音效
 function playMusicToggle() {
     var musicDom = document.getElementById('musicPlayWrap');
@@ -50,11 +60,15 @@ function startGame() {
     var startGamePage = document.getElementById('gameStartPage');
     startGamePage.style.transform = 'translateY(-100vh)';
 
+    var gameTraiWrapDom = document.getElementById('gameTraiWrap');
+    gameTraiWrapDom.style.display = 'block';
+
     gameAudio = new Audio('music/start_game.mp3');
     gameAudio.volume = gameAudioVolume;
     gameAudio.play();
 
     setTimeout(function () {
+        startGamePage.style.display = 'none';
         showAnswerPage(1);
     }, 610);
 }
@@ -64,6 +78,48 @@ function showRoute() {
     gameAudio = new Audio('music/pre.mp3');
     gameAudio.volume = gameAudioVolume;
     gameAudio.play();
+
+    var startGamePage = document.getElementById('gameStartPage');
+    var routePaneShadeDom = document.createElement('div');
+    routePaneShadeDom.classList.add('routePaneShade');
+    routePaneShadeDom.style.position = 'absolute';
+    routePaneShadeDom.style.top = '0';
+    routePaneShadeDom.style.left = '0';
+    routePaneShadeDom.style.width = '100vw';
+    routePaneShadeDom.style.height = '100vh';
+    routePaneShadeDom.style.background = 'rgba(0, 0, 0, .6)';
+    routePaneShadeDom.style.zIndex = '99999';
+    startGamePage.appendChild(routePaneShadeDom);
+
+    var routePaneDom = document.createElement('div');
+    routePaneDom.classList.add('routePane');
+    routePaneDom.style.position = 'absolute';
+    routePaneDom.style.top = '21vh';
+    routePaneDom.style.left = 'calc((100vw - 80vw) / 2)';
+    routePaneDom.style.width = 'calc(80vw - 60px)';
+    routePaneDom.style.height = 'calc(60vh - 10vh - 10px)';
+    routePaneDom.style.borderRadius = '4px';
+    routePaneDom.style.background = '#f29221';
+    routePaneDom.style.border = '2px solid #602e1f';
+    routePaneDom.style.zIndex = '999999';
+    routePaneDom.style.overflowX = 'hidden';
+    routePaneDom.style.overflowY = 'auto';
+    routePaneDom.style.padding = '10vh 30px 10px';
+    routePaneDom.style.fontSize = '18px';
+    routePaneDom.style.color = '#ffffff';
+    routePaneDom.style.lineHeight = '30px';
+    routePaneDom.innerHTML = routeData;
+    startGamePage.appendChild(routePaneDom);
+
+    var routePaneTitleDom = document.createElement('div');
+    routePaneTitleDom.classList.add('routePaneTitle');
+    routePaneTitleDom.innerHTML = '答题活动规则';
+    routePaneDom.appendChild(routePaneTitleDom);
+
+    routePaneShadeDom.onclick = function () {
+        routePaneShadeDom.remove();
+        routePaneDom.remove();
+    };
 }
 
 // 显示奖品
@@ -71,6 +127,48 @@ function showJiang() {
     gameAudio = new Audio('music/next.mp3');
     gameAudio.volume = gameAudioVolume;
     gameAudio.play();
+
+    var startGamePage = document.getElementById('gameStartPage');
+    var jiangPaneShadeDom = document.createElement('div');
+    jiangPaneShadeDom.classList.add('jiangPaneShade');
+    jiangPaneShadeDom.style.position = 'absolute';
+    jiangPaneShadeDom.style.top = '0';
+    jiangPaneShadeDom.style.left = '0';
+    jiangPaneShadeDom.style.width = '100vw';
+    jiangPaneShadeDom.style.height = '100vh';
+    jiangPaneShadeDom.style.background = 'rgba(0, 0, 0, .6)';
+    jiangPaneShadeDom.style.zIndex = '99999';
+    startGamePage.appendChild(jiangPaneShadeDom);
+
+    var jiangPaneDom = document.createElement('div');
+    jiangPaneDom.classList.add('jiangPane');
+    jiangPaneDom.style.position = 'absolute';
+    jiangPaneDom.style.top = '11vh';
+    jiangPaneDom.style.left = 'calc((100vw - 80vw) / 2)';
+    jiangPaneDom.style.width = 'calc(80vw - 60px)';
+    jiangPaneDom.style.height = 'calc(74vh - 10vh - 10px)';
+    jiangPaneDom.style.borderRadius = '4px';
+    jiangPaneDom.style.background = '#f29221';
+    jiangPaneDom.style.border = '2px solid #602e1f';
+    jiangPaneDom.style.zIndex = '999999';
+    jiangPaneDom.style.overflowX = 'hidden';
+    jiangPaneDom.style.overflowY = 'auto';
+    jiangPaneDom.style.padding = '10vh 30px 10px';
+    jiangPaneDom.style.fontSize = '18px';
+    jiangPaneDom.style.color = '#ffffff';
+    jiangPaneDom.style.lineHeight = '30px';
+    jiangPaneDom.innerHTML = jiangData;
+    startGamePage.appendChild(jiangPaneDom);
+
+    var jiangPaneTitleDom = document.createElement('div');
+    jiangPaneTitleDom.classList.add('jiangPaneTitle');
+    jiangPaneTitleDom.innerHTML = '答题活动奖品';
+    jiangPaneDom.appendChild(jiangPaneTitleDom);
+
+    jiangPaneShadeDom.onclick = function () {
+        jiangPaneShadeDom.remove();
+        jiangPaneDom.remove();
+    };
 }
 
 // 显示对应页数的游戏页面
@@ -121,6 +219,7 @@ function showAnswerPage(pageIndex) {
                         if (pageIndex == questionData.length) {
                             setTimeout(function () {
                                 var endGamePage = document.getElementById('gameEndPage');
+                                endGamePage.style.display = 'block';
                                 endGamePage.style.transform = 'translateY(0vh)';
 
                                 $.ajax({
@@ -132,7 +231,7 @@ function showAnswerPage(pageIndex) {
                                             alert('提交成功');
                                         } else {
                                             alert('提交失败，请稍后重试');
-                                        }　　
+                                        }
                                     }
                                 });
                             }, 200);
