@@ -340,3 +340,7 @@ function showAnswerPage(pageIndex) {
         gameTraiWrapDom.style.transform = 'translateX(' + goToLeftVal + 'vw)';
     }
 }
+
+function toChouJ() {
+    window.location.href = '';
+}
