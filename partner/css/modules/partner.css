@@ -131,7 +131,7 @@
 .page1_desc_wrap {
 	position: absolute;
 	width: 84vw;
-	bottom: 60px;
+	bottom: 40px;
 	left: calc((100vw - 84vw - 12px - 28px) / 2);
 	background: rgba(0, 126, 199, .8);
 	border: 6px solid rgba(29, 161, 246, .9);
@@ -647,7 +647,7 @@
 	position: relative;
 	display: block;
 	width: 40vw;
-	left: 20vw;
+	left: calc(20vw - 14px);
 	background: rgba(0, 126, 199, .8);
 	border: 3px solid rgba(29, 161, 246, .9);
 	border-radius: 3px;

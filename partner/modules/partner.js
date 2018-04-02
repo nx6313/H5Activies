@@ -122,6 +122,13 @@ function toNextStep() {
 				console.log('提交结果：' + msg);
 				if (msg == '1') {
 					alert('提交成功');
+					$('#partnerForm')[0].reset();
+					$("#userHeadImgShow").attr("src", '');
+					$("#userHeadImgShow").hide();
+					$('div.page6_step_wrap').find('span').removeClass('cur_selected');
+					$('div.page6_step_wrap').find('span:eq(0)').addClass('cur_selected');
+					$('div.page6_form_wrap').find('div.form_wrap').removeClass('cur_selected');
+					$('div.page6_form_wrap').find('div.form_wrap:eq(0)').addClass('cur_selected');
 					pageObj.pt.goToSlide(0);
 				} else {
 					alert('提交失败，请稍后重试');
