@@ -747,11 +747,11 @@
 }
 
 .page6_step_wrap {
-	position: relative;
+	position: absolute;
 	width: calc(80vw - 40px);
 	height: 3px;
 	left: 10vw;
-	top: 60px;
+	bottom: 390px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -792,10 +792,10 @@
 }
 
 .page6_form_wrap {
-	position: relative;
+	position: absolute;
 	width: 90vw;
-	top: 90px;
-	left: 5vw;
+	bottom: 40px;
+	left: calc(5vw - 3px);
 }
 
 .page6_form_wrap .form_wrap {
