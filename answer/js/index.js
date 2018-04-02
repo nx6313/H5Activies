@@ -342,5 +342,5 @@ function showAnswerPage(pageIndex) {
 }
 
 function toChouJ() {
-    window.location.href = '';
+     window.location.href = 'http://wq.dcsc520.com/app/index.php?i=7&c=entry&actid=19&do=index&m=hxq_lottery';
 }

@@ -24,6 +24,7 @@
  * @param {* 页面配置参数 } pageParams 
  */
 var initAppPage = function (pageParams) {
+    var returnData = {};
     var baseParams = {
         formRender: false,
         elmRender: false,
@@ -52,7 +53,7 @@ var initAppPage = function (pageParams) {
 
     // 解析活动页面数据
     if (!$.isEmptyObject(baseParams.pageTransitions)) {
-        initPageTransitions({
+        var pt = initPageTransitions({
             wrapElm: $('ul.pageItemWrap'),
             slideSelector: 'li.pageItem',
             startSlide: baseParams.pageTransitions.startSlide,
@@ -64,7 +65,9 @@ var initAppPage = function (pageParams) {
             onSliderLoad: baseParams.pageTransitions.onSliderLoad,
             onSlideAfter: baseParams.pageTransitions.onSlideAfter
         });
+        returnData['pt'] = pt;
     }
+    return returnData;
 };
 
 /**

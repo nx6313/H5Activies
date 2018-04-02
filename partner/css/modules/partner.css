@@ -925,4 +925,15 @@
 	opacity: 0;
 }
 
+#userHeadImgShow {
+	position: absolute;
+	top: 0px;
+	width: 104px;
+	height: 104px;
+	display: block;
+	left: calc((90vw - 100px - 4px) / 2);
+	z-index: 40;
+	display: none;
+}
+
 /****** 其他样式 - 页面元素 ******/

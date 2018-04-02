@@ -171,32 +171,29 @@
                 <span>上传照片</span>
             </div>
             <div class="page6_form_wrap">
-                <form action="">
+                <form id="partnerForm">
                     <div class="form_wrap step0 cur_selected">
                         <span>基本信息</span>
                         <input type="text" name="name" tip="真实姓名" placeholder="请输入真实姓名">
-                        <div class="picker" onclick="showTimeSelectPicker('选择性别', $(this).find('input'))">
+                        <div class="picker" onclick="showTimeSelectPicker('选择性别', $(this).find('input'), 'sex')">
                             <input type="hidden" name="sex">
                             <input type="text" readonly="readonly" tip="性别" placeholder="性别">
                         </div>
                         <input type="text" name="phone" tip="手机号" inputype="phone" placeholder="请输入手机号">
-                        <input type="text" name="idcard" tip="身份证" placeholder="请输入身份证">
+                        <input type="text" name="idcard" tip="身份证" inputype="idcard" placeholder="请输入身份证">
                     </div>
                     <div class="form_wrap step1">
                         <span>扩展信息</span>
-                        <div class="picker" onclick="showTimeSelectPicker('选择所在地址', $(this).find('input'))">
-                            <input type="hidden" name="address">
-                            <input type="text" class="picker" readonly="readonly" tip="所在地址" placeholder="请选择所在地址">
-                        </div>
-                        <div class="picker" onclick="showTimeSelectPicker('选择学历', $(this).find('input'))">
+                        <input type="text" name="address" tip="所在地址" placeholder="请输入所在地址">
+                        <div class="picker" onclick="showTimeSelectPicker('选择学历', $(this).find('input'), 'education')">
                             <input type="hidden" name="education">
                             <input type="text" class="picker" readonly="readonly" tip="学历" placeholder="请选择学历">
                         </div>
-                        <div class="picker" onclick="showTimeSelectPicker('选择职业', $(this).find('input'))">
+                        <div class="picker" onclick="showTimeSelectPicker('选择职业', $(this).find('input'), 'profession')">
                             <input type="hidden" name="profession">
                             <input type="text" class="picker" readonly="readonly" tip="职业" placeholder="请选择职业">
                         </div>
-                        <div class="picker" onclick="showTimeSelectPicker('选择出行方式', $(this).find('input'))">
+                        <div class="picker" onclick="showTimeSelectPicker('选择出行方式', $(this).find('input'), 'goway')">
                             <input type="hidden" name="goway">
                             <input type="text" class="picker" readonly="readonly" tip="出行方式" placeholder="请选择出行方式">
                         </div>
@@ -204,9 +201,11 @@
                     <div class="form_wrap step2">
                         <span>上传照片</span>
                         <div class="img_upload">
+                            <input type="hidden" id="headimgBackPath" name="headimg">
                             <span class="ripple"></span>
-                            <input type="file" accept="image/*" capture="camera" tip="头像照片">
+                            <input id="file" type="file" accept="image/*" capture="camera" tip="头像照片">
                             <span>点击头像，请上传两寸免冠照</span>
+                            <img id="userHeadImgShow" src="">
                         </div>
                     </div>
                     <div class="form_btn ripple touchIgnore" onclick="toNextStep()">下一步</div>
