@@ -13,24 +13,48 @@
     <svg id="ckLine" xmlns="http://www.w3.org/2000/svg"></svg>
     <div class="stars"></div>
     <img class="earth" src="img/earth.png">
+    <div class="earth-shade"></div>
     <img class="footer" src="img/footer.png">
     <div class="satic-area">
         <div class="dynamic-area1"></div>
+        <img class="dynamic-car" src="img/car.png">
+        <img class="wuzi" src="img/wuzi.gif">
         <div class="dynamic-area2"></div>
+    </div>
+    <div class="loginWrap">
+        <span class="loginTitle">账号密码</span>
+        <div id="loginName">
+            <input class="loginName" type="text" placeholder="请输入用户名登录">
+        </div>
+        <div id="loginPwd">
+            <input class="loginPwd" type="password" placeholder="请输入密码登录">
+        </div>
+        <div id="rememberLoginInfo">
+            <div class="rememberItem">
+                <input type="checkbox" /> 记住用户名
+            </div>
+            <div class="rememberItem forgetPwd">
+                忘记密码？
+            </div>
+        </div>
+        <button class="loginBtn">登录</button>
+        <div class="toRegister">
+            立即注册
+        </div>
     </div>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/jquery.ckLine.min.js"></script>
     <script src="js/xingkong.js"></script>
     <script>
-        // $('#ckLine').ckLine({
-        //     leftRight: false,
-        //     strokeColor: 'rgba(220, 220, 200, 0.1)',
-        //     strokeWidth: 1,
-        //     interval: 1200,
-        //     fadeOut: 200,
-        //     animateTime: 1400,
-        //     animationTimeRange: [800, 900]
-        // });
+        $('#ckLine').ckLine({
+            leftRight: false,
+            strokeColor: 'rgba(14, 32, 54, 0.6)',
+            strokeWidth: 1,
+            interval: 1200,
+            fadeOut: 200,
+            animateTime: 1400,
+            animationTimeRange: [800, 900]
+        });
     </script>
 </body>
 

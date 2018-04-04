@@ -86,11 +86,23 @@ body {
 
 .earth {
     position: absolute;
-    top: 2vh;
-    left: 10vh;
-    height: 60vh;
+    top: -10vh;
+    left: -6vh;
+    height: 120vh;
     pointer-events: none;
-    animation: rotate 300s infinite linear;
+    animation: rotate 360s infinite linear;
+}
+
+.earth-shade {
+    position: absolute;
+    top: 60vh;
+    left: 0;
+    height: 50vh;
+    width: 100vw;
+    background: -webkit-linear-gradient(bottom, rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgba(7, 19, 33, 0.8), rgba(7, 19, 33, 0.4), rgba(7, 19, 33, 0));
+    background: -o-linear-gradient(top, rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgba(7, 19, 33, 0.8), rgba(7, 19, 33, 0.4), rgba(7, 19, 33, 0));
+    background: -moz-linear-gradient(top, rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgba(7, 19, 33, 0.8), rgba(7, 19, 33, 0.4), rgba(7, 19, 33, 0));
+    background: linear-gradient(to top, rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgb(7, 19, 33), rgba(7, 19, 33, 0.8), rgba(7, 19, 33, 0.4), rgba(7, 19, 33, 0));
 }
 
 .footer {
@@ -106,7 +118,8 @@ body {
     bottom: 0;
     left: 0;
     width: 100vw;
-    height: 30vh;
+    height: 160px;
+    pointer-events: none;
 }
 
 @keyframes posterDrop1 {
@@ -128,7 +141,7 @@ body {
 }
 
 .dynamic-area1 {
-    position: relative;
+    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -139,12 +152,162 @@ body {
 }
 
 .dynamic-area2 {
-    position: relative;
+    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 140%;
     background: url(../img/poster-drop-animate1.png) repeat-x 0px 0px;
     background-size: auto 100%;
     animation: posterDrop2 8000s linear infinite;
+}
+
+.dynamic-car {
+    position: relative;
+    bottom: 120px;
+    left: 500px;
+    width: 460px;
+    pointer-events: none;
+}
+
+.wuzi {
+    position: relative;
+    bottom: 250px;
+    left: 230px;
+    width: 120px;
+    pointer-events: none;
+}
+
+.loginWrap {
+    position: absolute;
+    top: calc((100vh - 360px) / 2 - 10vh);
+    right: 240px;
+    background: rgba(255, 255, 255, .1);
+    width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    color: #ffffff;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.loginTitle {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.loginTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: calc((100% - 120px) / 2);
+    width: 120px;
+    height: 3px;
+    background: #c8e4ff;
+    border-radius: 10px;
+}
+
+#loginName {
+    position: relative;
+}
+
+.loginName {
+    position: relative;
+    border-radius: 4px;
+    border: none;
+    background: #ffffff;
+    color: #01050f;
+    outline: none;
+    font-size: 14px;
+    padding: 8px 10px 8px 30px;
+    margin-top: 14px;
+    width: 76%;
+}
+
+#loginName::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: url('../img/username.png') no-repeat;
+    background-size: 100% auto;
+    top: 22px;
+    left: 23px;
+    z-index: 10;
+}
+
+#loginPwd {
+    position: relative;
+}
+
+.loginPwd {
+    position: relative;
+    border-radius: 4px;
+    border: none;
+    background: #ffffff;
+    color: #01050f;
+    outline: none;
+    font-size: 14px;
+    padding: 8px 10px 8px 30px;
+    margin-top: 10px;
+    width: 76%;
+}
+
+#loginPwd::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: url('../img/password.png') no-repeat;
+    background-size: 100% auto;
+    top: 18px;
+    left: 23px;
+    z-index: 10;
+}
+
+#rememberLoginInfo {
+    white-space: nowrap;
+    font-size: 14px;
+    margin: 20px 0;
+    color: #fafafa;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+}
+
+.rememberItem {
+    display: inline-block;
+}
+
+.forgetPwd {
+    cursor: pointer;
+    color: #c8e4ff;
+}
+
+.loginBtn {
+    background: #c8e4ff;
+    color: #1b4d88;
+    width: 90%;
+    border-radius: 4px;
+    border: none;
+    padding: 8px 0;
+    letter-spacing: 4px;
+    font-weight: bold;
+    margin-top: 10px;
+    outline: none;
+}
+
+.toRegister {
+    font-size: 14px;
+    text-align: right;
+    padding: 0 16px;
+    color: #c8e4ff;
+    margin-top: 20px;
+    cursor: pointer;
 }
