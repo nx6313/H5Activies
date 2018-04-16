@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- add to homescreen for ios -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="js/game.js"></script>
+    <script>
+        new GamePlugin({
+            bgImg: 'http://img.zcool.cn/community/01ad9c5965c3f3a8012193a3959c43.jpg@2o.jpg',
+            fillColor: 'rgba(0, 0, 0, .8)'
+        }).startGame().showController();
+    </script>
+</body>
+
+</html>
