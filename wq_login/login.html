@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>微擎登陆</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <div class="page_wrap">
+        <img class="page_logo" src="imgs/logo.png">
+        <div class="page_animate_wrap">
+            <div class="animate_wrap">
+                <span class="animate_01 animated infinite xuanfu"></span>
+                <span class="animate_02 animated infinite xuanfu"></span>
+                <span class="animate_03 animated infinite xuanfu"></span>
+                <span class="animate_04"></span>
+                <span class="i_01 nGyroParallax"></span>
+                <span class="i_02 animated infinite xuanfu"></span>
+                <span class="i_03 nGyroParallax"></span>
+                <span class="i_04 nGyroParallax"></span>
+                <span class="i_05 nGyroParallax"></span>
+                <span class="i_06 nGyroParallax"></span>
+                <span class="i_07 nGyroParallax"></span>
+                <span class="i_08 animated infinite xuanfu"></span>
+                <span class="i_09 nGyroParallax"></span>
+            </div>
+            <div class="page_animate_shade"></div>
+        </div>
+        <div class="loginWrap">
+            <span class="loginTitle">商户登录
+                <span class="loginTitle_left_line"></span>
+                <span class="loginTitle_right_line"></span>
+            </span>
+            <div id="loginName">
+                <input class="loginName" type="text" placeholder="请输入用户名登录">
+            </div>
+            <div id="loginPwd">
+                <input class="loginPwd" type="password" placeholder="请输入密码登录">
+            </div>
+            <button class="loginBtn" onclick="toLogin($('.loginName').val(), $('.loginPwd').val())">登录</button>
+            <div class="forgetPwd" onclick="forgetPwd($('.loginName').val())">忘记密码？</div>
+        </div>
+    </div>
+    <script src="js/login.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.nGyroParallax.js"></script>
+    <script>
+        $(function () {
+            $(window).load(function () {
+                $('.i_01').nGyroParallax({
+                    wrap: $('.animate_wrap'),
+                    magnification: .001
+                });
+                $('.i_03').nGyroParallax({
+                    wrap: $('.animate_wrap'),
+                    magnification: .002
+                });
+                $('.i_04').nGyroParallax({
+                    wrap: $('.animate_wrap'),
+                    magnification: .001
+                });
+                $('.i_05').nGyroParallax({
+                    wrap: $('.animate_wrap'),
+                    magnification: .003
+                });
+                $('.i_06').nGyroParallax({
+                    wrap: $('.animate_wrap'),
+                    magnification: .002
+                });
+                $('.i_07').nGyroParallax({
+                    wrap: $('.animate_wrap'),
+                    magnification: .001
+                });
+                $('.i_09').nGyroParallax({
+                    wrap: $('.animate_wrap'),
+                    magnification: .005
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
